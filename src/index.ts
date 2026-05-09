@@ -12,10 +12,6 @@ app.get("/", (req, res) => {
     res.send("Server running...");
 });
 
-// app.listen(5000, () => {
-//     console.log("Server started on port 5000");
-// }); 
-
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
@@ -29,16 +25,6 @@ app.get("/test-db", async (req, res) => {
     try {
         const result = await pool.query("SELECT NOW()");
         res.json(result.rows);
-    } catch (err: any) {
-        console.error(err);
-        res.status(500).json({ error: err.message });
-    }
-});
-
-app.get("/test/qr", async (req, res) => {
-    try {
-        const response = await pool.query("SELECT NOW()");
-        res.json(response.rows);
     } catch (err: any) {
         console.error(err);
         res.status(500).json({ error: err.message });
